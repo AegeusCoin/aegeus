@@ -105,7 +105,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // AEG: 1 minute (aka every block)
         nTargetSpacing = 1 * 60;  // AEG: 1 minute
-        nLastPOWBlock = 1200;
+        nLastPOWBlock = 500;
         nMaturity = 30;
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 510;
