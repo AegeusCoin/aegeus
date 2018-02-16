@@ -1,0 +1,96 @@
+activemasternode.cpp:            pmn->Check();
+activemasternode.cpp:            if (pmn->IsEnabled() && pmn->protocolVersion == PROTOCOL_VERSION) EnableHotColdMasterNode(pmn->vin, pmn->addr);
+activemasternode.cpp:        if (pmn->IsPingedWithin(MASTERNODE_PING_SECONDS, mnp.sigTime)) {
+activemasternode.cpp:        pmn->lastPing = mnp;
+activemasternode.cpp:        pmn->UpdateFromNewBroadcast(mnb);
+bak.masternode-payments.cpp:    if (pmn->protocolVersion < ActiveProtocol()) {
+bak.masternode-payments.cpp:        strError = strprintf("Masternode protocol too old %d - req %d", pmn->protocolVersion, ActiveProtocol());
+bak.masternode-payments.cpp:            CScript payee = GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID());
+bak.masternode-payments.cpp:        if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+main.cpp:                if (!pmn->allowFreeTx) {
+main.cpp:                if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+main.cpp:                pmn->allowFreeTx = false;
+masternode-budget.cpp:    if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+masternode-budget.cpp:    if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+masternode.cpp:        if (pmn->sigTime > sigTime) {
+masternode.cpp:                sigTime, vin.prevout.hash.ToString(), pmn->sigTime);
+masternode.cpp:        if (!pmn->IsEnabled()) return true;
+masternode.cpp:    if (pmn->pubKeyCollateralAddress == pubKeyCollateralAddress && !pmn->IsBroadcastedWithin(MASTERNODE_MIN_MNB_SECONDS)) {
+masternode.cpp:        if (pmn->UpdateFromNewBroadcast((*this))) {
+masternode.cpp:            pmn->Check();
+masternode.cpp:            if (pmn->IsEnabled()) Relay();
+masternode.cpp:        if (pmn->IsEnabled()) return true;
+masternode.cpp:            mnodeman.Remove(pmn->vin);
+masternode.cpp:    if (pmn != NULL && pmn->protocolVersion >= masternodePayments.GetMinMasternodePaymentsProto()) {
+masternode.cpp:        if (fRequireEnabled && !pmn->IsEnabled()) return false;
+masternode.cpp:        if (!pmn->IsPingedWithin(MASTERNODE_MIN_MNP_SECONDS - 60, sigTime)) {
+masternode.cpp:            if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+masternode.cpp:            pmn->lastPing = *this;
+masternode.cpp:            pmn->Check(true);
+masternode.cpp:            if (!pmn->IsEnabled()) return false;
+masternodeman.cpp:        uint256 n = pmn->CalculateScore(1, nBlockHeight - 100);
+masternodeman.cpp:            if (count == -1 && pmn->pubKeyCollateralAddress == pubkey && (GetAdjustedTime() - pmn->nLastDsee > MASTERNODE_MIN_MNB_SECONDS)) {
+masternodeman.cpp:                if (pmn->protocolVersion > GETHEADERS_VERSION && sigTime - pmn->lastPing.sigTime < MASTERNODE_MIN_MNB_SECONDS) return;
+masternodeman.cpp:                if (pmn->nLastDsee < sigTime) { //take the newest entry
+masternodeman.cpp:                    if (pmn->protocolVersion < GETHEADERS_VERSION) {
+masternodeman.cpp:                        pmn->pubKeyMasternode = pubkey2;
+masternodeman.cpp:                        pmn->sigTime = sigTime;
+masternodeman.cpp:                        pmn->sig = vchSig;
+masternodeman.cpp:                        pmn->protocolVersion = protocolVersion;
+masternodeman.cpp:                        pmn->addr = addr;
+masternodeman.cpp:                        pmn->lastPing = CMasternodePing(vin);
+masternodeman.cpp:                    pmn->nLastDsee = sigTime;
+masternodeman.cpp:                    pmn->Check();
+masternodeman.cpp:                    if (pmn->IsEnabled()) {
+masternodeman.cpp:        if (pmn != NULL && pmn->protocolVersion >= masternodePayments.GetMinMasternodePaymentsProto()) {
+masternodeman.cpp:            if (sigTime - pmn->nLastDseep > MASTERNODE_MIN_MNP_SECONDS) {
+masternodeman.cpp:                std::string strMessage = pmn->addr.ToString() + boost::lexical_cast<std::string>(sigTime) + boost::lexical_cast<std::string>(stop);
+masternodeman.cpp:                if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+masternodeman.cpp:                if (pmn->protocolVersion < GETHEADERS_VERSION) pmn->lastPing = CMasternodePing(vin);
+masternodeman.cpp:                pmn->nLastDseep = sigTime;
+masternodeman.cpp:                pmn->Check();
+masternodeman.cpp:                if (pmn->IsEnabled()) {
+masternodeman.cpp:    } else if (pmn->UpdateFromNewBroadcast(mnb)) {
+masternode-payments.cpp:    if (pmn->protocolVersion < ActiveProtocol()) {
+masternode-payments.cpp:        strError = strprintf("Masternode protocol too old %d - req %d", pmn->protocolVersion, ActiveProtocol());
+masternode-payments.cpp:            CScript payee = GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID());
+masternode-payments.cpp:        if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+Binary file aegeusd matches
+obfuscation.cpp:            if (pmn->nLastDsq != 0 &&
+obfuscation.cpp:                pmn->nLastDsq + mnodeman.CountEnabled(ActiveProtocol()) / 5 > mnodeman.nDsqCount) {
+obfuscation.cpp:            LogPrint("obfuscation", "dsq last %d last2 %d count %d\n", pmn->nLastDsq, pmn->nLastDsq + mnodeman.size() / 5, mnodeman.nDsqCount);
+obfuscation.cpp:            if (pmn->nLastDsq != 0 &&
+obfuscation.cpp:                pmn->nLastDsq + mnodeman.CountEnabled(ActiveProtocol()) / 5 > mnodeman.nDsqCount) {
+obfuscation.cpp:                LogPrint("obfuscation", "dsq -- Masternode sending too many dsq messages. %s \n", pmn->addr.ToString());
+obfuscation.cpp:            pmn->nLastDsq = mnodeman.nDsqCount;
+obfuscation.cpp:            pmn->allowFreeTx = true;
+obfuscation.cpp:                LogPrintf("DoAutomaticDenominating --- attempt to connect to masternode from queue %s\n", pmn->addr.ToString());
+obfuscation.cpp:            if (pmn->nLastDsq != 0 &&
+obfuscation.cpp:                pmn->nLastDsq + mnodeman.CountEnabled(ActiveProtocol()) / 5 > mnodeman.nDsqCount) {
+obfuscation.cpp:            LogPrintf("DoAutomaticDenominating --- attempt %d connection to Masternode %s\n", i, pmn->addr.ToString());
+obfuscation.cpp:            CNode* pnode = ConnectNode((CAddress)pmn->addr, NULL, true);
+obfuscation.cpp:                vecMasternodesUsed.push_back(pmn->vin);
+obfuscation.cpp:                vecMasternodesUsed.push_back(pmn->vin); // postpone MN we wasn't able to connect to
+obfuscation.cpp:    // try to use non-denominated and not mn-like funds
+obfuscation.cpp:        if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+obfuscation.h:            addr = pmn->addr;
+obfuscation.h:            protocolVersion = pmn->protocolVersion;
+obfuscation-relay.cpp:        //printf("RelayThroughNode %s\n", pmn->addr.ToString().c_str());
+obfuscation-relay.cpp:        CNode* pnode = ConnectNode((CAddress)pmn->addr, NULL, false);
+rpcmasternode-budget.cpp:            CBudgetVote vote(pmn->vin, hash, nVote);
+rpcmasternode-budget.cpp:            CBudgetVote vote(pmn->vin, hash, nVote);
+rpcmasternode-budget.cpp:            CFinalizedBudgetVote vote(pmn->vin, hash);
+rpcmasternode.cpp:                mn->Status().find(strFilter) == string::npos &&
+rpcmasternode.cpp:                CBitcoinAddress(mn->pubKeyCollateralAddress.GetID()).ToString().find(strFilter) == string::npos) continue;
+rpcmasternode.cpp:            std::string strStatus = mn->Status();
+rpcmasternode.cpp:            SplitHostPort(mn->addr.ToString(), port, strHost);
+rpcmasternode.cpp:            obj.push_back(Pair("addr", CBitcoinAddress(mn->pubKeyCollateralAddress.GetID()).ToString()));
+rpcmasternode.cpp:            obj.push_back(Pair("version", mn->protocolVersion));
+rpcmasternode.cpp:            obj.push_back(Pair("lastseen", (int64_t)mn->lastPing.sigTime));
+rpcmasternode.cpp:            obj.push_back(Pair("activetime", (int64_t)(mn->lastPing.sigTime - mn->sigTime)));
+rpcmasternode.cpp:            obj.push_back(Pair("lastpaid", (int64_t)mn->GetLastPaid()));
+rpcmasternode.cpp:                if (strCommand == "disabled" && pmn->IsEnabled()) continue;
+rpcmasternode.cpp:        std::string strStatus = pmn ? pmn->Status() : "MISSING";
+rpcmasternode.cpp:        mnObj.push_back(Pair("addr", CBitcoinAddress(pmn->pubKeyCollateralAddress.GetID()).ToString()));
+swifttx.cpp:        LogPrint("swifttx", "SwiftTX::ProcessConsensusVote - Masternode ADDR %s %d\n", pmn->addr.ToString().c_str(), n);
+swifttx.cpp:    if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchMasterNodeSignature, strMessage, errorMessage)) {

@@ -1,0 +1,28 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/aegeus_bg.qm</file>
+        <file alias="ca">locale/aegeus_ca.qm</file>
+        <file alias="cs">locale/aegeus_cs.qm</file>
+        <file alias="da">locale/aegeus_da.qm</file>
+        <file alias="de">locale/aegeus_de.qm</file>
+        <file alias="en">locale/aegeus_en.qm</file>
+        <file alias="en_US">locale/aegeus_en_US.qm</file>
+        <file alias="es">locale/aegeus_es.qm</file>
+        <file alias="fi">locale/aegeus_fi.qm</file>
+        <file alias="fr_FR">locale/aegeus_fr_FR.qm</file>
+        <file alias="it">locale/aegeus_it.qm</file>
+        <file alias="ja">locale/aegeus_ja.qm</file>
+        <file alias="ko_KR">locale/aegeus_ko_KR.qm</file>
+        <file alias="nl">locale/aegeus_nl.qm</file>
+        <file alias="pl">locale/aegeus_pl.qm</file>
+        <file alias="pt">locale/aegeus_pt.qm</file>
+        <file alias="pt_BR">locale/aegeus_pt_BR.qm</file>
+        <file alias="ro_RO">locale/aegeus_ro_RO.qm</file>
+        <file alias="ru">locale/aegeus_ru.qm</file>
+        <file alias="sk">locale/aegeus_sk.qm</file>
+        <file alias="sv">locale/aegeus_sv.qm</file>
+        <file alias="uk">locale/aegeus_uk.qm</file>
+        <file alias="zh_CN">locale/aegeus_zh_CN.qm</file>
+        <file alias="zh_TW">locale/aegeus_zh_TW.qm</file>
+    </qresource>
+</RCC>

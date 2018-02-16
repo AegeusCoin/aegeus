@@ -1,0 +1,26 @@
+[Unit]
+Description=AEGEUS's distributed currency daemon
+After=network.target
+
+[Service]
+User=aegeus
+Group=aegeus
+
+Type=forking
+PIDFile=/var/lib/aegeusd/aegeusd.pid
+
+ExecStart=/usr/bin/aegeusd -daemon -pid=/var/lib/aegeusd/aegeusd.pid \
+          -conf=/etc/aegeus/aegeus.conf -datadir=/var/lib/aegeusd
+
+ExecStop=-/usr/bin/aegeus-cli -conf=/etc/aegeus/aegeus.conf \
+         -datadir=/var/lib/aegeusd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

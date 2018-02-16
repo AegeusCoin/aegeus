@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Aegeus
+Comment=Aegeus P2P Cryptocurrency
+Comment[fr]=Aegeus, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Aegeus, eşten eşe kriptografik sanal para birimi
+Exec=aegeus-qt %u
+Terminal=false
+Type=Application
+Icon=aegeus128
+MimeType=x-scheme-handler/aegeus;
+Categories=Office;Finance;

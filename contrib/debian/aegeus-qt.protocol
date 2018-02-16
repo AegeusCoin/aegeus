@@ -1,0 +1,11 @@
+[Protocol]
+exec=aegeus-qt '%u'
+protocol=aegeus
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
