@@ -95,7 +95,7 @@ public:
         pchMessageStart[2] = 0xe4;
         pchMessageStart[3] = 0xa6;
         vAlertPubKey = ParseHex("044886172e4635ab5a74863bfccbf19c7a424619448d9622ddbc970c71c085c379be8c37a7fe6ceae3dc75b7366adc1aaabd8135369e3f4f740d3270aee6be6bc7");
-        nDefaultPort = 29325;
+        nDefaultPort = 29328;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // AEG starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -105,7 +105,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // AEG: 1 minute (aka every block)
         nTargetSpacing = 1 * 60;  // AEG: 1 minute
-        nLastPOWBlock = 1200;
+        nLastPOWBlock = 500;
         nMaturity = 30;
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 510;
