@@ -1598,8 +1598,11 @@ int64_t GetBlockValue(int nHeight)
 {
     int64_t nSubsidy = 1 * COIN;
 
-    if (nHeight < 2 && nHeight > 0)
+    if (nHeight < 2 && nHeight > 0) {
     	return 21000000 * COIN;
+    } else if (nHeight >= 123314) {
+    	return 40 * COIN;
+    }
 
     return nSubsidy;
 }
@@ -1608,7 +1611,11 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
 
-    ret = blockValue / 2;
+    if (nHeight >= 123314) {
+      ret = 100 * COIN;
+    } else {
+      ret = blockValue / 2;
+    }
 
     return ret;
 }
@@ -5320,10 +5327,16 @@ int ActiveProtocol()
     // SPORK_15 is used for 70910. Nodes < 70910 don't see it and still get their protocol version via SPORK_14 and their 
     // own ModifierUpgradeBlock()
  
+/*
     if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+*/
 
-    return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+    if (chainActive.Tip()->nHeight >= 123314) {
+      return 70811;
+    }
+
+    return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 }
 
 // requires LOCK(cs_vRecvMsg)
