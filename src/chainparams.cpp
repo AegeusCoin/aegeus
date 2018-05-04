@@ -142,11 +142,6 @@ public:
         assert(hashGenesisBlock == uint256("0x00000c4811a2aac2ff8eec8785fb2f14aba540213df59885681c95d18a482a84"));
         assert(genesis.hashMerkleRoot == uint256("0x5c499636e3b33705a2949b8ff6a9712804da418acf516c936c7df766dc7f1b17"));
 
-        vSeeds.push_back(CDNSSeedData("149.56.70.231", "149.56.70.231"));           // Single node address
-        vSeeds.push_back(CDNSSeedData("149.56.70.232", "149.56.70.232"));           // Single node address
-        vSeeds.push_back(CDNSSeedData("149.56.70.233", "149.56.70.233"));           // Single node address
-        vSeeds.push_back(CDNSSeedData("149.56.70.234", "149.56.70.234"));           // Single node address
-        vSeeds.push_back(CDNSSeedData("149.56.70.235", "149.56.70.235"));           // Single node address
         vSeeds.push_back(CDNSSeedData("seeds.aegeus.io", "seeds.aegeus.io"));           // Single node address
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
