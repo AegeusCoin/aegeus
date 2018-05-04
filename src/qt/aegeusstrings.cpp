@@ -209,10 +209,10 @@ QT_TRANSLATE_NOOP("aegeus-core", ""
 QT_TRANSLATE_NOOP("aegeus-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("aegeus-core", "(51472 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("aegeus-core", "(29328 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("aegeus-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("aegeus-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("aegeus-core", "(must be 51472 for mainnet)"),
+QT_TRANSLATE_NOOP("aegeus-core", "(must be 29328 for mainnet)"),
 QT_TRANSLATE_NOOP("aegeus-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("aegeus-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("aegeus-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
