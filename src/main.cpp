@@ -1600,7 +1600,7 @@ int64_t GetBlockValue(int nHeight)
 
     if (nHeight < 2 && nHeight > 0) {
     	return 21000000 * COIN;
-    } else if (nHeight >= 123314) {
+    } else if (nHeight >= 123314 && nHeight < 123700) {
     	return 40 * COIN;
     }
 
@@ -1611,7 +1611,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
 
-    if (nHeight >= 123314) {
+    if (nHeight >= 123314 && nHeight < 123700) {
       ret = 100 * COIN;
     } else {
       ret = blockValue / 2;
@@ -5332,8 +5332,8 @@ int ActiveProtocol()
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 */
 
-    if (chainActive.Tip()->nHeight >= 123314) {
-      return 70811;
+    if (chainActive.Tip()->nHeight >= 123700) {
+      return 70812;
     }
 
     return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
