@@ -28,6 +28,8 @@ We believe there is an incredible need for increased and enhanced privacy with r
 
 **P2P Port:** 29328
 
+**Website URL:** http://aegeus.io/
+
 **Block Explorer URL:** https://chainz.cryptoid.info/aeg/
 
 ## Where can I buy Aegeus (AEG)?
