@@ -1115,11 +1115,14 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (!(mapArgs.count("-onion") && mapArgs["-onion"] == "0") &&
         (fProxy || mapArgs.count("-onion"))) {
         CService addrOnion;
-        if (!mapArgs.count("-onion"))
+
+        if (!mapArgs.count("-onion")) {
             addrOnion = addrProxy;
 	    SetLimited(NET_TOR);
-        else
+        } else {
             addrOnion = CService(mapArgs["-onion"], 9050);
+	}
+
         if (!addrOnion.IsValid())
             return InitError(strprintf(_("Invalid -onion address: '%s'"), mapArgs["-onion"]));
         SetProxy(NET_TOR, addrOnion);
