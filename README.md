@@ -22,7 +22,23 @@ We believe there is an incredible need for increased and enhanced privacy with r
 
 **Blocks 123700-131281:** 1 AEG (0.5 AEG to the block finder, 0.5 AEG to the masternode winner)
 
-**Block 131282+:** 140 AEG (70 AEG to the block finder, 70 AEG to the masternode winner)
+**Blocks 131282-197035:** 140 AEG (70 AEG to the block finder, 70 AEG to the masternode winner)
+
+**Blocks 241675-286314:** 112 AEG (56 AEG to the block finder, 56 AEG to the masternode winner)
+
+**Blocks 286315-329514:** 98 AEG (49 AEG to the block finder, 49 AEG to the masternode winner)
+
+**Blocks 329515-374154:** 84 AEG (42 AEG to the block finder, 42 AEG to the masternode winner)
+
+**Blocks 374155-417354:** 70 AEG (35 AEG to the block finder, 35 AEG to the masternode winner)
+
+**Blocks 417355-461994:** 56 AEG (28 AEG to the block finder, 28 AEG to the masternode winner)
+
+**Blocks 461995-506634:** 42 AEG (21 AEG to the block finder, 21 AEG to the masternode winner)
+
+**Blocks 506635-546954:** 28 AEG (14 AEG to the block finder, 14 AEG to the masternode winner)
+
+**Blocks 546955+:** 20 AEG (10 AEG to the block finder, 10 AEG to the masternode winner)
 
 **Default RPC Port:** 56661
 

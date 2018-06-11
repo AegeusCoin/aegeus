@@ -1602,8 +1602,26 @@ int64_t GetBlockValue(int nHeight)
     	return 21000000 * COIN;
     } else if (nHeight >= 123314 && nHeight < 123700) {
     	return 40 * COIN;
-    } else if (nHeight >= 131282) {
+    } else if (nHeight >= 131282 && nHeight < 197035) {
     	return 140 * COIN;
+    } else if (nHeight >= 197035 && nHeight < 241675) { // July 1st
+    	return 126 * COIN;
+    } else if (nHeight >= 241675 && nHeight < 286315) { // August 1st
+    	return 112 * COIN;
+    } else if (nHeight >= 286315 && nHeight < 329515) { // September 1st
+    	return 98 * COIN;
+    } else if (nHeight >= 329515 && nHeight < 374155) { // October 1st
+    	return 84 * COIN;
+    } else if (nHeight >= 374155 && nHeight < 417355) { // November 1st
+    	return 70 * COIN;
+    } else if (nHeight >= 417355 && nHeight < 461995) { // December 1st
+    	return 56 * COIN;
+    } else if (nHeight >= 461995 && nHeight < 506635) { // January 1st 2019
+    	return 42 * COIN;
+    } else if (nHeight >= 506635 && nHeight < 546955) { // February 1st
+    	return 28 * COIN;
+    } else if (nHeight >= 546955) { // February 1st and beyond
+    	return 20 * COIN;
     }
 
     return nSubsidy;
@@ -5316,6 +5334,8 @@ int ActiveProtocol()
 
     if (chainActive.Tip()->nHeight >= 131282) {
       return 70813;
+    } else if (chainActive.Tip()->nHeight >= 197035) {
+      return 70814;
     }
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;

@@ -8,6 +8,7 @@
 #include "addrman.h"
 #include "masternodeman.h"
 #include "obfuscation.h"
+#include "spork.h"
 #include "sync.h"
 #include "util.h"
 #include <boost/lexical_cast.hpp>
@@ -616,6 +617,20 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
                 sigTime, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
             return false;
         }
+    }
+
+    int nCount = 0;
+    int ipv4 = 0, ipv6 = 0, onion = 0;
+    int64_t masternode_cap = GetSporkValue(SPORK_17_MN_CAP);
+
+    if (chainActive.Tip())
+        mnodeman.GetNextMasternodeInQueueForPayment(chainActive.Tip()->nHeight, true, nCount);
+
+    mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
+
+    if (mnodeman.stable_size() >= masternode_cap && chainActive.Tip()->nHeight >= 197035) {
+      LogPrintf("Rejecting masternode - limit reached: %d total of %d cap\n", mnodeman.stable_size(), masternode_cap);
+      return false;
     }
 
     LogPrintf("mnb - Got NEW Masternode entry - %s - %lli \n", vin.prevout.hash.ToString(), sigTime);
