@@ -22,7 +22,9 @@ We believe there is an incredible need for increased and enhanced privacy with r
 
 **Blocks 123700-131281:** 1 AEG (0.5 AEG to the block finder, 0.5 AEG to the masternode winner)
 
-**Blocks 131282-197035:** 140 AEG (70 AEG to the block finder, 70 AEG to the masternode winner)
+**Blocks 131282-197034:** 140 AEG (70 AEG to the block finder, 70 AEG to the masternode winner)
+
+**Blocks 197035-241674:** 126 AEG (63 AEG to the block finder, 63 AEG to the masternode winner)
 
 **Blocks 241675-286314:** 112 AEG (56 AEG to the block finder, 56 AEG to the masternode winner)
 
