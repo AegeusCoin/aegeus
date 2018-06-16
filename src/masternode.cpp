@@ -619,12 +619,8 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
         }
     }
 
-    int nCount = 0;
     int ipv4 = 0, ipv6 = 0, onion = 0;
     int64_t masternode_cap = GetSporkValue(SPORK_17_MN_CAP);
-
-    if (chainActive.Tip())
-        mnodeman.GetNextMasternodeInQueueForPayment(chainActive.Tip()->nHeight, true, nCount);
 
     mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
 

@@ -5332,7 +5332,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 int ActiveProtocol()
 {
 
-    if (chainActive.Tip()->nHeight >= 131282) {
+    if (chainActive.Tip()->nHeight >= 131282 && chainActive.Tip()->nHeight < 197035) {
       return 70813;
     } else if (chainActive.Tip()->nHeight >= 197035) {
       return 70814;
