@@ -619,16 +619,6 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
         }
     }
 
-    int ipv4 = 0, ipv6 = 0, onion = 0;
-    int64_t masternode_cap = GetSporkValue(SPORK_17_MN_CAP);
-
-    mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
-
-    if (mnodeman.stable_size() >= masternode_cap && chainActive.Tip()->nHeight >= 197035) {
-      LogPrintf("Rejecting masternode - limit reached: %d total of %d cap\n", mnodeman.stable_size(), masternode_cap);
-      return false;
-    }
-
     LogPrintf("mnb - Got NEW Masternode entry - %s - %lli \n", vin.prevout.hash.ToString(), sigTime);
     CMasternode mn(*this);
     mnodeman.Add(mn);

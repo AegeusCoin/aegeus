@@ -31,6 +31,7 @@
 #include "utilmoneystr.h"
 
 #include <sstream>
+#include <iostream>
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/filesystem.hpp>
@@ -3158,6 +3159,21 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
 bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
 {
+    LogPrintf("\nCheckNEW\n");
+    // This was added as a quick check due to a fork to make sure everyone gets on the correct chain if they are already not
+    // This happens before the kernel is checked to prevent a hangup on sync as seen during testing when trying to validate invalid blocks
+    if (chainActive.Height() >= 205706) {
+      int checkBlock = 205706;
+      CBlockIndex* cblockindex = chainActive[checkBlock];
+      if (cblockindex->GetBlockHash().GetHex() != "ee5b0a720762b540834f1c0c7dd8c700be3fbcaee49a1971118cfafe158e079f") {
+	std::cout << "Please check debug.log for information on joining the correct chain." << std::endl;
+	uiInterface.ThreadSafeMessageBox(_("You are on the wrong chain.  Please check debug.log for more information on resolving this.  Shutting down."), "", CClientUIInterface::MSG_ERROR);
+        LogPrintf("Your block database is from a forked version of the correct chain.  Please visit https://github.com/AegeusCoin/bootstrap to avoid any potential loss of future rewards and get on the proper chain.\n");
+        StartShutdown();
+        return false;
+      }
+    }
+
     if (pindexPrev == NULL)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().ToString().c_str());
 
@@ -5334,8 +5350,10 @@ int ActiveProtocol()
 
     if (chainActive.Tip()->nHeight >= 131282 && chainActive.Tip()->nHeight < 197035) {
       return 70813;
-    } else if (chainActive.Tip()->nHeight >= 197035) {
+    } else if (chainActive.Tip()->nHeight >= 197035 && chainActive.Tip()->nHeight < 207500) {
       return 70814;
+    } else if (chainActive.Tip()->nHeight >= 207500) {
+      return 70815;
     }
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;

@@ -156,7 +156,7 @@ CMasternodeDB::ReadResult CMasternodeDB::Read(CMasternodeMan& mnodemanToLoad, bo
     LogPrintf("Loaded info from mncache.dat  %dms\n", GetTimeMillis() - nStart);
     LogPrintf("  %s\n", mnodemanToLoad.ToString());
     if (!fDryRun) {
-        LogPrintf("Masternode manager - cleaning....\n");
+        LogPrintf("Masternode manager - cleaning up here....\n");
         mnodemanToLoad.CheckAndRemove(true);
         LogPrintf("Masternode manager - result:\n");
         LogPrintf("  %s\n", mnodemanToLoad.ToString());
