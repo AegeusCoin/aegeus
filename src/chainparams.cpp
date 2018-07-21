@@ -63,10 +63,12 @@ static const Checkpoints::CCheckpointData data = {
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x001"));
+    boost::assign::map_list_of(0, uint256("00000ae4a05aa8ffcaa8b5fd246560dc45af54a8868dc6f2f4ffa3cb850f01ad"))
+    (1, uint256("000006267959b2d4330b5b92d73ab22facb4c03a4f9bff32acb03eaeff304a71"));
+
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1454124731,
+    1532099595,
     0,
     250};
 
@@ -190,38 +192,35 @@ public:
         pchMessageStart[0] = 0x45;
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
-        pchMessageStart[3] = 0xba;
+        pchMessageStart[3] = 0xde;
         vAlertPubKey = ParseHex("044886172e4635ab5a74863bfccbf19c7a424619448d9622ddbc970c71c085c379be8c37a7fe6ceae3dc75b7366adc1aaabd8135369e3f4f740d3270aee6be6bc7");
-        nDefaultPort = 52315;
+        nDefaultPort = 39238;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // AEG: 1 minute
         nTargetSpacing = 1 * 60;  // AEG: 1 minute
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 350;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
-        nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
-        nMaxMoneyOut = 43199500 * COIN;
+        nModifierUpdateBlock = 360;
+        nMaxMoneyOut = 21100000 * COIN;
 
-        //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1454124731;
-        genesis.nNonce = 2402015;
+        genesis.nTime = 1532098831;
+        genesis.nNonce = 2201202;
 
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
+        assert(hashGenesisBlock == uint256("0x00000ae4a05aa8ffcaa8b5fd246560dc45af54a8868dc6f2f4ffa3cb850f01ad"));
+        assert(genesis.hashMerkleRoot == uint256("0x5c499636e3b33705a2949b8ff6a9712804da418acf516c936c7df766dc7f1b17"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "aegeus-testnet.seed.fuzzbawls.pw"));
-        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "aegeus-testnet.seed2.fuzzbawls.pw"));
-        vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net"));
-        vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
+        vSeeds.push_back(CDNSSeedData("seeds.aegeus.io", "seeds.aegeus.io"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet aegeus addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet aegeus script addresses start with '8' or '9'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 56); // Testnet aegeus addresses start with 'P'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 50);  // Testnet aegeus script addresses start with 'M'
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 184);     // Testnet private keys start with 2
         // Testnet aegeus BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
         // Testnet aegeus BIP32 prvkeys start with 'DRKP'
