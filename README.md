@@ -52,7 +52,13 @@ We believe there is an incredible need for increased and enhanced privacy with r
 
 ## Where can I buy Aegeus (AEG)?
 
-Currently we are listed on https://wallet.crypto-bridge.org/market/BRIDGE.AEG_BRIDGE.BTC and we will be listing on more exchanges in the very near future.  Our focus is more on the development of the project as we believe in the cause, but do recognize the importance of making AEG available across multiple exchanges to foster a healthy trading economy.
+Currently we are listed on:
+
+- https://wallet.crypto-bridge.org/market/BRIDGE.AEG_BRIDGE.BTC
+- https://www.coinexchange.io/market/AEG/BTC
+- https://crex24.com/exchange/AEG-BTC
+
+We will be listing on more exchanges in the very near future.  Our focus is more on the development of the project as we believe in the cause, but do recognize the importance of making AEG available across multiple exchanges to foster a healthy trading economy.
 
 ## How can I join the community?
 
