@@ -5335,13 +5335,14 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-
     if (chainActive.Tip()->nHeight >= 131282 && chainActive.Tip()->nHeight < 197035) {
       return 70813;
     } else if (chainActive.Tip()->nHeight >= 197035 && chainActive.Tip()->nHeight < 207500) {
       return 70814;
-    } else if (chainActive.Tip()->nHeight >= 207500) {
+    } else if (chainActive.Tip()->nHeight >= 207500 && chainActive.Tip()->nHeight < 286315) {
       return 70815;
+    } else if (chainActive.Tip()->nHeight >= 286316) {
+      return 70816;
     }
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
