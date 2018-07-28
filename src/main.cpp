@@ -1609,19 +1609,7 @@ int64_t GetBlockValue(int nHeight)
     	return 126 * COIN;
     } else if (nHeight >= 241675 && nHeight < 286315) { // August 1st
     	return 112 * COIN;
-    } else if (nHeight >= 286315 && nHeight < 329515) { // September 1st
-    	return 98 * COIN;
-    } else if (nHeight >= 329515 && nHeight < 374155) { // October 1st
-    	return 84 * COIN;
-    } else if (nHeight >= 374155 && nHeight < 417355) { // November 1st
-    	return 70 * COIN;
-    } else if (nHeight >= 417355 && nHeight < 461995) { // December 1st
-    	return 56 * COIN;
-    } else if (nHeight >= 461995 && nHeight < 506635) { // January 1st 2019
-    	return 42 * COIN;
-    } else if (nHeight >= 506635 && nHeight < 546955) { // February 1st
-    	return 28 * COIN;
-    } else if (nHeight >= 546955) { // February 1st and beyond
+    } else if (nHeight >= 286315) { // September 1st
     	return 20 * COIN;
     }
 
