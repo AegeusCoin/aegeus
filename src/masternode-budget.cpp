@@ -16,6 +16,7 @@
 #include "util.h"
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
+#include "spork.h"
 
 CBudgetManager budget;
 CCriticalSection cs_budget;
@@ -1343,10 +1344,30 @@ CBudgetProposal::CBudgetProposal(const CBudgetProposal& other)
     fValid = true;
 }
 
+unsigned long getVetoHash(const std::string& str)
+{
+    unsigned long hash = 1;
+    for (size_t i = 0; i < str.size(); ++i)
+        hash = 13 * hash + (unsigned char)str[i];
+    return hash;
+}
+
 bool CBudgetProposal::IsValid(std::string& strError, bool fCheckCollateral)
 {
     if (GetNays() - GetYeas() > mnodeman.CountEnabled(ActiveProtocol()) / 10) {
         strError = "Active removal";
+        return false;
+    }
+
+    CTxDestination address1;
+    ExtractDestination(address, address1);
+    CBitcoinAddress address2(address1);
+    // create a unique string for the proposal
+    std::string proposalStr = strProposalName +"/"+ strURL +"/"+ address2.ToString() +"/"+ std::to_string(nAmount) +"/"+ std::to_string(nBlockStart) +"/"+ std::to_string(nBlockEnd);
+    int vetoHash = getVetoHash(proposalStr) % 2000000000;
+    LogPrint("mnbudget", "CBudgetProposal::IsValid Proposal '%s' has VETO hash %d\n", proposalStr, vetoHash);
+    if (GetSporkValue(SPORK_17_PROPOSAL_VETO) == vetoHash) {
+        strError = "Proposal Veto";
         return false;
     }
 
