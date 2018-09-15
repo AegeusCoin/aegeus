@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>652</width>
-    <height>300</height>
+    <height>401</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,22 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>130</y>
+     <y>150</y>
      <width>201</width>
-     <height>20</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string>Enter whole numbers 1 - 100</string>
@@ -36,10 +48,22 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>160</y>
+     <y>200</y>
      <width>401</width>
-     <height>21</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string/>
@@ -52,9 +76,9 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>0</y>
-     <width>451</width>
-     <height>121</height>
+     <y>10</y>
+     <width>601</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="lineWidth">
@@ -76,10 +100,10 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QLabel" name="message">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>200</y>
+     <x>280</x>
+     <y>260</y>
      <width>351</width>
-     <height>91</height>
+     <height>101</height>
     </rect>
    </property>
    <property name="text">
@@ -90,10 +114,22 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
+     <y>300</y>
      <width>120</width>
-     <height>23</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string/>
@@ -104,15 +140,33 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="text">
     <string>Add</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
   </widget>
   <widget class="QPushButton" name="disableButton">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>260</y>
+     <y>340</y>
      <width>120</width>
-     <height>23</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="statusTip">
     <string>Deactivate MultiSend</string>
@@ -120,15 +174,33 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="text">
     <string>Deactivate</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
   </widget>
   <widget class="QPushButton" name="addressBookButton">
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>160</y>
-     <width>28</width>
-     <height>21</height>
+     <y>200</y>
+     <width>36</width>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string>Choose an address from the address book</string>
@@ -137,8 +209,14 @@ MultiSend will not be activated unless you have clicked Activate</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="../aegeus.qrc">
+    <iconset>
      <normaloff>:/icons/address-book</normaloff>:/icons/address-book</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="shortcut">
     <string>Alt+A</string>
@@ -151,10 +229,16 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>130</y>
+     <y>150</y>
      <width>121</width>
-     <height>20</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string>Percentage of stake to send</string>
@@ -167,10 +251,16 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>160</y>
+     <y>200</y>
      <width>111</width>
-     <height>16</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string>Address to send portion of stake to</string>
@@ -183,10 +273,22 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>230</y>
+     <y>300</y>
      <width>120</width>
-     <height>23</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string/>
@@ -197,15 +299,33 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="text">
     <string>Delete</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
   </widget>
   <widget class="QPushButton" name="activateButton">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>260</y>
+     <y>340</y>
      <width>120</width>
-     <height>23</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="statusTip">
     <string>Activate MultiSend</string>
@@ -213,15 +333,33 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="text">
     <string>Activate</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
   </widget>
   <widget class="QPushButton" name="viewButton">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>200</y>
+     <y>260</y>
      <width>251</width>
-     <height>23</height>
+     <height>36</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
    </property>
    <property name="toolTip">
     <string/>
@@ -232,12 +370,18 @@ MultiSend will not be activated unless you have clicked Activate</string>
    <property name="text">
     <string>View MultiSend</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>100</y>
+     <y>110</y>
      <width>351</width>
      <height>24</height>
     </rect>
@@ -260,8 +404,6 @@ MultiSend will not be activated unless you have clicked Activate</string>
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../aegeus.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

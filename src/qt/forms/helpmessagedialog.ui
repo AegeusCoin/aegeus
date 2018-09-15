@@ -30,6 +30,9 @@
      <property name="pixmap">
       <pixmap resource="../aegeus.qrc">:/images/about</pixmap>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
     </widget>
    </item>
    <item>
@@ -54,8 +57,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>447</width>
-          <height>68</height>
+          <width>457</width>
+          <height>69</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">

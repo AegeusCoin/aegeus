@@ -20,6 +20,7 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QTextDocument>
+#include <QGraphicsDropShadowEffect>
 
 ReceiveCoinsDialog::ReceiveCoinsDialog(QWidget* parent) : QDialog(parent),
                                                           ui(new Ui::ReceiveCoinsDialog),
@@ -27,12 +28,14 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(QWidget* parent) : QDialog(parent),
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC // Icons on push buttons are very uncommon on Mac
-    ui->clearButton->setIcon(QIcon());
-    ui->receiveButton->setIcon(QIcon());
-    ui->showRequestButton->setIcon(QIcon());
-    ui->removeRequestButton->setIcon(QIcon());
-#endif
+    int ds_blur = 70;
+    int ds_yoff = 15;
+    QGraphicsDropShadowEffect* drop_shadow_mainframe = new QGraphicsDropShadowEffect;
+    drop_shadow_mainframe->setBlurRadius(ds_blur);
+    drop_shadow_mainframe->setXOffset(0);
+    drop_shadow_mainframe->setYOffset(ds_yoff);
+    drop_shadow_mainframe->setColor(QColor(59, 76, 107, 50));
+    ui->mainFrame->setGraphicsEffect(drop_shadow_mainframe);
 
     // context menu actions
     QAction* copyLabelAction = new QAction(tr("Copy label"), this);
@@ -73,12 +76,14 @@ void ReceiveCoinsDialog::setModel(WalletModel* model)
         tableView->setSelectionMode(QAbstractItemView::ContiguousSelection);
         tableView->setColumnWidth(RecentRequestsTableModel::Date, DATE_COLUMN_WIDTH);
         tableView->setColumnWidth(RecentRequestsTableModel::Label, LABEL_COLUMN_WIDTH);
+        tableView->setColumnWidth(RecentRequestsTableModel::Amount, 180);
 
         connect(tableView->selectionModel(),
             SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this,
             SLOT(recentRequestsView_selectionChanged(QItemSelection, QItemSelection)));
         // Last 2 columns are set by the columnResizingFixer, when the table geometry is ready.
-        columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(tableView, AMOUNT_MINIMUM_COLUMN_WIDTH, DATE_COLUMN_WIDTH);
+        //columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(tableView, AMOUNT_MINIMUM_COLUMN_WIDTH, AMOUNT_MINIMUM_COLUMN_WIDTH_B);
+        columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(tableView, 180, 130);
     }
 }
 

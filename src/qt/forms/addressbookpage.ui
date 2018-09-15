@@ -96,9 +96,11 @@
        <property name="text">
         <string>&amp;New</string>
        </property>
-       <property name="icon">
-        <iconset resource="../aegeus.qrc">
-         <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -113,9 +115,11 @@
        <property name="text">
         <string>&amp;Copy</string>
        </property>
-       <property name="icon">
-        <iconset resource="../aegeus.qrc">
-         <normaloff>:/icons/editcopy</normaloff>:/icons/editcopy</iconset>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -130,9 +134,11 @@
        <property name="text">
         <string>&amp;Delete</string>
        </property>
-       <property name="icon">
-        <iconset resource="../aegeus.qrc">
-         <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -160,9 +166,11 @@
        <property name="text">
         <string>&amp;Export</string>
        </property>
-       <property name="icon">
-        <iconset resource="../aegeus.qrc">
-         <normaloff>:/icons/export</normaloff>:/icons/export</iconset>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -189,8 +197,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../aegeus.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

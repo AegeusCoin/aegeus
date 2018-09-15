@@ -18,6 +18,7 @@
 #include <QPoint>
 #include <QPushButton>
 #include <QSystemTrayIcon>
+//#include <QtWebKit>
 
 class ClientModel;
 class NetworkStyle;
@@ -75,6 +76,7 @@ protected:
     void dragEnterEvent(QDragEnterEvent* event);
     void dropEvent(QDropEvent* event);
     bool eventFilter(QObject* object, QEvent* event);
+    //void paintEvent(QPaintEvent *event) override;
 
 private:
     ClientModel* clientModel;
@@ -268,3 +270,27 @@ private slots:
 };
 
 #endif // BITCOIN_QT_BITCOINGUI_H
+
+
+
+
+/* ADDED TO HAVE A CUSTOM/SCALABLE/RETINA-READY BACKGROUND IMAGE ON TOOLBAR */
+#ifndef CUSTOMQWIDGET_H
+#define CUSTOMQWIDGET_H
+
+#include <QWidget>
+#include <QPainter>
+
+class CustomQWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit CustomQWidget(QWidget *parent = nullptr);
+    void paintEvent(QPaintEvent *pe);
+
+signals:
+
+public slots:
+};
+
+#endif // CUSTOMQWIDGET_H

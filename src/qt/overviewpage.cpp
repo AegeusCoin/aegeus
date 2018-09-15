@@ -24,10 +24,11 @@
 #include <QPainter>
 #include <QSettings>
 #include <QTimer>
+#include <QGraphicsDropShadowEffect>
 
-#define DECORATION_SIZE 48
-#define ICON_OFFSET 16
-#define NUM_ITEMS 5
+#define DECORATION_SIZE 42
+#define ICON_OFFSET 0
+#define NUM_ITEMS 8
 
 class TxViewDelegate : public QAbstractItemDelegate
 {
@@ -117,6 +118,37 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
 {
     nDisplayUnit = 0; // just make sure it's not unitialized
     ui->setupUi(this);
+
+    int ds_blur = 70;
+    int ds_yoff = 15;
+    QGraphicsDropShadowEffect* drop_shadow = new QGraphicsDropShadowEffect;
+    drop_shadow->setBlurRadius(ds_blur);
+    drop_shadow->setXOffset(0);
+    drop_shadow->setYOffset(ds_yoff);
+    drop_shadow->setColor(QColor(59, 76, 107, 50));
+    ui->frame->setGraphicsEffect(drop_shadow);
+
+    QGraphicsDropShadowEffect* drop_shadow_obfuscation = new QGraphicsDropShadowEffect;
+    drop_shadow_obfuscation->setBlurRadius(ds_blur);
+    drop_shadow_obfuscation->setXOffset(0);
+    drop_shadow_obfuscation->setYOffset(ds_yoff);
+    drop_shadow_obfuscation->setColor(QColor(59, 76, 107, 50));
+    ui->frameObfuscation->setGraphicsEffect(drop_shadow_obfuscation);
+
+    QGraphicsDropShadowEffect* drop_shadow_obfuscation_btn = new QGraphicsDropShadowEffect;
+    drop_shadow_obfuscation_btn->setBlurRadius(56);
+    drop_shadow_obfuscation_btn->setXOffset(0);
+    drop_shadow_obfuscation_btn->setYOffset(6);
+    drop_shadow_obfuscation_btn->setColor(QColor(38, 1, 207, 77));
+    // THIS MAKES THE BUTTON INVISIBLE FOR SOME REASON...
+    //ui->toggleObfuscation->setGraphicsEffect(drop_shadow_obfuscation_btn);
+
+    QGraphicsDropShadowEffect* drop_shadow_transactions = new QGraphicsDropShadowEffect;
+    drop_shadow_transactions->setBlurRadius(ds_blur);
+    drop_shadow_transactions->setXOffset(0);
+    drop_shadow_transactions->setYOffset(ds_yoff);
+    drop_shadow_transactions->setColor(QColor(59, 76, 107, 50));
+    ui->frame_2->setGraphicsEffect(drop_shadow_transactions);
 
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);
@@ -220,14 +252,21 @@ void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
     ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
     ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
     ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
+    ui->labelWalletStatusSpacer2->setVisible(showWatchOnly);
 
     if (!showWatchOnly) {
         ui->labelWatchImmature->hide();
+        ui->labelSpendable->hide();
+        ui->labelWatchonly->hide();
     } else {
+        ui->labelSpendable->show();
+        ui->labelWatchonly->show();
+        /*
         ui->labelBalance->setIndent(20);
         ui->labelUnconfirmed->setIndent(20);
         ui->labelImmature->setIndent(20);
         ui->labelTotal->setIndent(20);
+        */
     }
 }
 
@@ -299,6 +338,8 @@ void OverviewPage::updateAlerts(const QString& warnings)
 void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
+    ui->labelWalletStatusSpacer1->setVisible(fShow);
+    ui->labelWalletStatusSpacer2->setVisible(fShow && ui->labelSpendable->isVisible());
     ui->labelObfuscationSyncStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
 }
@@ -314,6 +355,7 @@ void OverviewPage::updateObfuscationProgress()
 
     if (currentBalance == 0) {
         ui->obfuscationProgress->setValue(0);
+        ui->obfuscationValue->setText("0%");
         ui->obfuscationProgress->setToolTip(tr("No inputs detected"));
 
         // when balance is zero just show info from settings
@@ -356,12 +398,12 @@ void OverviewPage::updateObfuscationProgress()
         strAmountAndRounds = strAnonymizeAegeusAmount + " / " + tr("%n Rounds", "", nObfuscationRounds);
     } else {
         QString strMaxToAnonymize = BitcoinUnits::formatHtmlWithUnit(nDisplayUnit, nMaxToAnonymize, false, BitcoinUnits::separatorAlways);
-        ui->labelAmountRounds->setToolTip(tr("Not enough compatible inputs to anonymize <span style='color:red;'>%1</span>,<br>"
-                                             "will anonymize <span style='color:red;'>%2</span> instead")
+        ui->labelAmountRounds->setToolTip(tr("Not enough compatible inputs to anonymize <span style='color:#f03e43;'>%1</span>,<br>"
+                                             "will anonymize <span style='color:#f03e43;'>%2</span> instead")
                                               .arg(strAnonymizeAegeusAmount)
                                               .arg(strMaxToAnonymize));
         strMaxToAnonymize = strMaxToAnonymize.remove(strMaxToAnonymize.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
-        strAmountAndRounds = "<span style='color:red;'>" +
+        strAmountAndRounds = "<span style='color:#f03e43;'>" +
                              QString(BitcoinUnits::factor(nDisplayUnit) == 1 ? "" : "~") + strMaxToAnonymize +
                              " / " + tr("%n Rounds", "", nObfuscationRounds) + "</span>";
     }
@@ -401,6 +443,8 @@ void OverviewPage::updateObfuscationProgress()
     if (progress >= 100) progress = 100;
 
     ui->obfuscationProgress->setValue(progress);
+    QString progress_txt = QString::number(progress) + '%';
+    ui->obfuscationValue->setText(progress_txt);
 
     QString strToolPip = ("<b>" + tr("Overall progress") + ": %1%</b><br/>" +
                           tr("Denominated") + ": %2%<br/>" +

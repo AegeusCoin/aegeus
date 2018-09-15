@@ -28,6 +28,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QTextDocument>
+#include <QGraphicsDropShadowEffect>
 
 SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent),
                                                     ui(new Ui::SendCoinsDialog),
@@ -38,11 +39,14 @@ SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent),
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC // Icons on push buttons are very uncommon on Mac
-    ui->addButton->setIcon(QIcon());
-    ui->clearButton->setIcon(QIcon());
-    ui->sendButton->setIcon(QIcon());
-#endif
+    int ds_blur = 70;
+    int ds_yoff = 15;
+    QGraphicsDropShadowEffect* drop_shadow_mainframe = new QGraphicsDropShadowEffect;
+    drop_shadow_mainframe->setBlurRadius(ds_blur);
+    drop_shadow_mainframe->setXOffset(0);
+    drop_shadow_mainframe->setYOffset(ds_yoff);
+    drop_shadow_mainframe->setColor(QColor(59, 76, 107, 50));
+    ui->mainFrame->setGraphicsEffect(drop_shadow_mainframe);
 
     GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
 
@@ -675,17 +679,36 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn&
 
 void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
 {
-    ui->labelFeeMinimized->setVisible(fMinimize);
+    //ui->labelFeeMinimized->setVisible(fMinimize); /* always keep the transaction fee visible */
     ui->buttonChooseFee->setVisible(fMinimize);
     ui->buttonMinimizeFee->setVisible(!fMinimize);
-    ui->frameFeeSelection->setVisible(!fMinimize);
-    ui->horizontalLayoutSmartFee->setContentsMargins(0, (fMinimize ? 0 : 6), 0, 0);
+
+    //ui->frameFeeSelection->setVisible(!fMinimize);
+    if (fMinimize) {
+        ui->frameFeeSelection->hide();
+    } else {
+        ui->frameFeeSelection->show();
+    }
+
+    //ui->horizontalLayoutSmartFee->setContentsMargins(0, (fMinimize ? 0 : 6), 0, 0);
     fFeeMinimized = fMinimize;
 }
 
 void SendCoinsDialog::on_buttonChooseFee_clicked()
 {
+    ui->mainFrame->setGraphicsEffect(Q_NULLPTR);
+
     minimizeFeeSection(false);
+
+    int ds_blur = 70;
+    int ds_yoff = 15;
+    QColor ds_color = QColor(59, 76, 107, 50);
+    QGraphicsDropShadowEffect* drop_shadow_mainframe = new QGraphicsDropShadowEffect;
+    drop_shadow_mainframe->setBlurRadius(ds_blur);
+    drop_shadow_mainframe->setXOffset(0);
+    drop_shadow_mainframe->setYOffset(ds_yoff);
+    drop_shadow_mainframe->setColor(ds_color);
+    ui->mainFrame->setGraphicsEffect(drop_shadow_mainframe);
 }
 
 void SendCoinsDialog::on_buttonMinimizeFee_clicked()

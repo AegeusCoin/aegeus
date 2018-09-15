@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>674</width>
-    <height>363</height>
+    <height>377</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,7 +109,14 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLineEdit" name="dataDirectory"/>
+          <widget class="QLineEdit" name="dataDirectory">
+           <property name="minimumSize">
+            <size>
+             <width>36</width>
+             <height>36</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="ellipsisButton">
@@ -119,6 +126,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>36</width>
+             <height>36</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>30</width>
@@ -127,6 +140,12 @@
            </property>
            <property name="text">
             <string notr="true">...</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>36</width>
+             <height>36</height>
+            </size>
            </property>
            <property name="autoDefault">
             <bool>false</bool>

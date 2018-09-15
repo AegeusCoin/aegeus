@@ -176,55 +176,97 @@ BITCOIN_QT_H = \
   qt/winshutdownmonitor.h
 
 RES_ICONS = \
+  qt/res/icons/add@2x.png \
   qt/res/icons/add.png \
-  qt/res/icons/address-book.png \
+  qt/res/icons/address-book@2x.png \
+  qt/res/icons/bitcoin.icns \
   qt/res/icons/bitcoin.ico \
   qt/res/icons/bitcoin.png \
-  qt/res/icons/browse.png \
   qt/res/icons/bitcoin_testnet.ico \
   qt/res/icons/bitcoin_testnet.png \
-  qt/res/icons/clock1.png \
-  qt/res/icons/clock2.png \
-  qt/res/icons/clock3.png \
-  qt/res/icons/clock4.png \
-  qt/res/icons/clock5.png \
-  qt/res/icons/configure.png \
-  qt/res/icons/connect0_16.png \
-  qt/res/icons/connect1_16.png \
-  qt/res/icons/connect2_16.png \
-  qt/res/icons/connect3_16.png \
-  qt/res/icons/connect4_16.png \
-  qt/res/icons/debugwindow.png \
-  qt/res/icons/edit.png \
-  qt/res/icons/editcopy.png \
-  qt/res/icons/editpaste.png \
-  qt/res/icons/export.png \
-  qt/res/icons/eye.png \
-  qt/res/icons/eye_minus.png \
-  qt/res/icons/eye_plus.png \
-  qt/res/icons/filesave.png \
+  qt/res/icons/bittrex.png \
+  qt/res/icons/browse@2x.png \
+  qt/res/icons/browse.png \
+  qt/res/icons/checkbox_checked_off@2x.png \
+  qt/res/icons/checkbox_checked_on@2x.png \
+  qt/res/icons/checkbox_unchecked_off@2x.png \
+  qt/res/icons/checkbox_unchecked_on@2x.png \
+  qt/res/icons/clock1@2x.png \
+  qt/res/icons/clock2@2x.png \
+  qt/res/icons/clock3@2x.png \
+  qt/res/icons/clock4@2x.png \
+  qt/res/icons/clock5@2x.png \
+  qt/res/icons/configure@2x.png \
+  qt/res/icons/connect0_16@2x.png \
+  qt/res/icons/connect1_16@2x.png \
+  qt/res/icons/connect2_16@2x.png \
+  qt/res/icons/connect3_16@2x.png \
+  qt/res/icons/connect4_16@2x.png \
+  qt/res/icons/debugwindow@2x.png \
+  qt/res/icons/edit@2x.png \
+  qt/res/icons/editcopy@2x.png \
+  qt/res/icons/editpaste@2x.png \
+  qt/res/icons/explorer@2x.png \
+  qt/res/icons/export@2x.png \
+  qt/res/icons/eye@2x.png \
+  qt/res/icons/eye_minus@2x.png \
+  qt/res/icons/eye_plus@2x.png \
+  qt/res/icons/filesave@2x.png \
   qt/res/icons/history.png \
-  qt/res/icons/key.png \
-  qt/res/icons/lock_closed.png \
-  qt/res/icons/lock_open.png \
-  qt/res/icons/masternodes.png \
+  qt/res/icons/icon_masternodes@2x.png \
+  qt/res/icons/icon_masternodes_on@2x.png \
+  qt/res/icons/icon_overview@2x.png \
+  qt/res/icons/icon_overview_on@2x.png \
+  qt/res/icons/icon_receive@2x.png \
+  qt/res/icons/icon_receive_on@2x.png \
+  qt/res/icons/icon_send@2x.png \
+  qt/res/icons/icon_send_on@2x.png \
+  qt/res/icons/icon_transactions@2x.png \
+  qt/res/icons/icon_transactions_on@2x.png \
+  qt/res/icons/import.png \
+  qt/res/icons/key@2x.png \
+  qt/res/icons/lock_closed@2x.png \
+  qt/res/icons/lock_open@2x.png \
+  qt/res/icons/minus@2x.png \
+  qt/res/icons/notsynced@2x.png \
   qt/res/icons/overview.png \
   qt/res/icons/qrcode.png \
-  qt/res/icons/quit.png \
+  qt/res/icons/quit@2x.png \
+  qt/res/icons/radio_checked_off@2x.png \
+  qt/res/icons/radio_checked_on@2x.png \
+  qt/res/icons/radio_unchecked_off@2x.png \
+  qt/res/icons/radio_unchecked_on@2x.png \
   qt/res/icons/receive.png \
-  qt/res/icons/remove.png \
+  qt/res/icons/remove@2x.png \
   qt/res/icons/send.png \
-  qt/res/icons/staking_active.png \
-  qt/res/icons/staking_inactive.png \
-  qt/res/icons/synced.png \
+  qt/res/icons/staking_active@2x.png \
+  qt/res/icons/staking_inactive@2x.png \
+  qt/res/icons/synced@2x.png \
   qt/res/icons/trade.png \
-  qt/res/icons/transaction0.png \
-  qt/res/icons/transaction2.png \
-  qt/res/icons/transaction_conflicted.png \
-  qt/res/icons/tx_inout.png \
-  qt/res/icons/tx_input.png \
-  qt/res/icons/tx_output.png \
-  qt/res/icons/tx_mined.png
+  qt/res/icons/transaction0@2x.png \
+  qt/res/icons/transaction2@2x.png \
+  qt/res/icons/transaction_conflicted@2x.png \
+  qt/res/icons/tx_inout@2x.png \
+  qt/res/icons/tx_input@2x.png \
+  qt/res/icons/tx_mined@2x.png \
+  qt/res/icons/tx_output@2x.png
+
+RES_FONTS = \
+  qt/res/fonts/Lato-Black.ttf \
+  qt/res/fonts/Lato-BoldItalic.ttf \
+  qt/res/fonts/Lato-Bold.ttf \
+  qt/res/fonts/Lato-Italic.ttf \
+  qt/res/fonts/Lato-Regular.ttf \
+  qt/res/fonts/NotoSans-BoldItalic.ttf \
+  qt/res/fonts/NotoSans-Bold.ttf \
+  qt/res/fonts/NotoSans-Italic.ttf \
+  qt/res/fonts/NotoSans-Regular.ttf \
+  qt/res/fonts/Volte_Bold.otf \
+  qt/res/fonts/Volte_Light.otf \
+  qt/res/fonts/Volte_Medium.otf \
+  qt/res/fonts/Volte.otf \
+  qt/res/fonts/Volte_Semibold.otf \
+  qt/res/fonts/volte_semibold-webfont.ttf 
 
 BITCOIN_QT_CPP = \
   qt/bitcoinaddressvalidator.cpp \
@@ -287,18 +329,29 @@ endif
 
 RES_IMAGES = \
   qt/res/images/about.png \
-  qt/res/images/splash.png \
-  qt/res/images/splash_testnet.png \
+  qt/res/images/about@2x.png \
+  qt/res/images/AEGbrand@2x.png \
+  qt/res/images/AEGbrand.png \
+  qt/res/images/AEGbrand.svg \
+  qt/res/images/aegeus_logo_horizontal.png \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
-  qt/res/images/upArrow_small.png \
-  qt/res/images/aegeus_logo_horizontal.png \
   qt/res/images/leftArrow_small.png \
-  qt/res/images/rightArrow_small.png \
+  qt/res/images/QToolBar@2x.png \
+  qt/res/images/QToolBar.png \
+  qt/res/images/QToolBar.svg \
   qt/res/images/qtreeview_selected.png \
-  qt/res/images/walletFrame.png \
+  qt/res/images/rightArrow_small.png \
+  qt/res/images/splash@2x.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash.svg \
+  qt/res/images/splash_testnet@2x.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_testnet.svg \
+  qt/res/images/upArrow.png \
+  qt/res/images/upArrow_small.png \
   qt/res/images/walletFrame_bg.png \
-  qt/res/images/walletFrame_bg.png
+  qt/res/images/walletFrame.png
 
 RES_CSS = \
   qt/res/css/default.css
@@ -314,7 +367,7 @@ qt_libbitcoinqt_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
 qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
-  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_FONTS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
 
 nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
   $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
@@ -374,7 +427,7 @@ $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name aegeus_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_FONTS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name aegeus $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@

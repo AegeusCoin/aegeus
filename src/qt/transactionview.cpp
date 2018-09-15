@@ -43,12 +43,12 @@ TransactionView::TransactionView(QWidget* parent) : QWidget(parent), model(0), t
     setContentsMargins(0, 0, 0, 0);
 
     QHBoxLayout* hlayout = new QHBoxLayout();
-    hlayout->setContentsMargins(0, 0, 0, 0);
+    hlayout->setContentsMargins(0, 0, 0, 20);
 #ifdef Q_OS_MAC
-    hlayout->setSpacing(5);
+    hlayout->setSpacing(10);
     hlayout->addSpacing(26);
 #else
-    hlayout->setSpacing(0);
+    hlayout->setSpacing(10);
     hlayout->addSpacing(23);
 #endif
 
@@ -105,6 +105,9 @@ TransactionView::TransactionView(QWidget* parent) : QWidget(parent), model(0), t
 #if QT_VERSION >= 0x040700
     addressWidget->setPlaceholderText(tr("Enter address or label to search"));
 #endif
+    addressWidget->setObjectName("transactionsAddressWidget");
+    addressWidget->setContentsMargins(QMargins());
+    addressWidget->setFixedHeight(38);
     hlayout->addWidget(addressWidget);
 
     amountWidget = new QLineEdit(this);
@@ -117,6 +120,9 @@ TransactionView::TransactionView(QWidget* parent) : QWidget(parent), model(0), t
     amountWidget->setFixedWidth(100);
 #endif
     amountWidget->setValidator(new QDoubleValidator(0, 1e20, 8, this));
+    amountWidget->setObjectName("transactionsAmountWidget");
+    amountWidget->setContentsMargins(QMargins());
+    amountWidget->setFixedHeight(38);
     hlayout->addWidget(amountWidget);
 
     QVBoxLayout* vlayout = new QVBoxLayout(this);
@@ -491,6 +497,7 @@ QWidget* TransactionView::createDateRangeWidget()
     dateFrom->setCalendarPopup(true);
     dateFrom->setMinimumWidth(100);
     dateFrom->setDate(QDate::currentDate().addDays(-7));
+    dateFrom->setObjectName("transactions_date_from");
     layout->addWidget(dateFrom);
     layout->addWidget(new QLabel(tr("to")));
 
@@ -499,6 +506,7 @@ QWidget* TransactionView::createDateRangeWidget()
     dateTo->setCalendarPopup(true);
     dateTo->setMinimumWidth(100);
     dateTo->setDate(QDate::currentDate());
+    dateTo->setObjectName("transactions_date_to");
     layout->addWidget(dateTo);
     layout->addStretch();
 

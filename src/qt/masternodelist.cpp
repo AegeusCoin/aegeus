@@ -14,6 +14,7 @@
 
 #include <QMessageBox>
 #include <QTimer>
+#include <QGraphicsDropShadowEffect>
 
 CCriticalSection cs_masternodes;
 
@@ -24,12 +25,21 @@ MasternodeList::MasternodeList(QWidget* parent) : QWidget(parent),
 {
     ui->setupUi(this);
 
+    int ds_blur = 70;
+    int ds_yoff = 15;
+    QGraphicsDropShadowEffect *drop_shadow_tabMyMasternodes = new QGraphicsDropShadowEffect;
+    drop_shadow_tabMyMasternodes->setBlurRadius(ds_blur);
+    drop_shadow_tabMyMasternodes->setXOffset(0);
+    drop_shadow_tabMyMasternodes->setYOffset(ds_yoff);
+    drop_shadow_tabMyMasternodes->setColor(QColor(59, 76, 107, 50));
+    ui->tabMyMasternodes->setGraphicsEffect(drop_shadow_tabMyMasternodes);
+
     ui->startButton->setEnabled(false);
 
     int columnAliasWidth = 100;
-    int columnAddressWidth = 200;
-    int columnProtocolWidth = 60;
-    int columnStatusWidth = 80;
+    int columnAddressWidth = 190;
+    int columnProtocolWidth = 90;
+    int columnStatusWidth = 100;
     int columnActiveWidth = 130;
     int columnLastSeenWidth = 130;
 

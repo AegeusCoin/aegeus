@@ -227,9 +227,9 @@ RPCConsole::RPCConsole(QWidget* parent) : QDialog(parent),
     ui->setupUi(this);
     GUIUtil::restoreWindowGeometry("nRPCConsoleWindow", this->size(), this);
 
-#ifndef Q_OS_MAC
+/*#ifndef Q_OS_MAC
     ui->openDebugLogfileButton->setIcon(QIcon(":/icons/export"));
-#endif
+#endif*/
 
     // Install event filter for up and down arrow
     ui->lineEdit->installEventFilter(this);

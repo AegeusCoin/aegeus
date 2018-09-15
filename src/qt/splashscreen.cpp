@@ -90,7 +90,8 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle* networkStyle) 
     setWindowTitle(titleText + " " + titleAddText);
 
     // Resize window and move to center of desktop, disallow resizing
-    QRect r(QPoint(), pixmap.size());
+    //QRect r(QPoint(), pixmap.size());
+    QRect r(QPoint(), QSize(pixmap.size().width()/2, pixmap.size().height()/2)); //retinado
     resize(r.size());
     setFixedSize(r.size());
     move(QApplication::desktop()->screenGeometry().center() - r.center());
@@ -114,8 +115,8 @@ static void InitMessage(SplashScreen* splash, const std::string& message)
     QMetaObject::invokeMethod(splash, "showMessage",
         Qt::QueuedConnection,
         Q_ARG(QString, QString::fromStdString(message)),
-        Q_ARG(int, Qt::AlignBottom | Qt::AlignHCenter),
-        Q_ARG(QColor, QColor(100, 100, 100)));
+        Q_ARG(int, Qt::AlignBottom | Qt::AlignLeft),
+        Q_ARG(QColor, QColor(197, 202, 211)));
 }
 
 static void ShowProgress(SplashScreen* splash, const std::string& title, int nProgress)

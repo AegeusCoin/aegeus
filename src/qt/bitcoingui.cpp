@@ -55,6 +55,7 @@
 #include <QTimer>
 #include <QToolBar>
 #include <QVBoxLayout>
+//#include <QtWebKit>
 
 #if QT_VERSION < 0x050000
 #include <QTextDocument>
@@ -178,7 +179,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     frameBlocks->setContentsMargins(0, 0, 0, 0);
     frameBlocks->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     QHBoxLayout* frameBlocksLayout = new QHBoxLayout(frameBlocks);
-    frameBlocksLayout->setContentsMargins(3, 0, 3, 0);
+    frameBlocksLayout->setContentsMargins(0, 0, 0, 0);
     frameBlocksLayout->setSpacing(3);
     unitDisplayControl = new UnitDisplayStatusBarControl();
     labelStakingIcon = new QLabel();
@@ -186,7 +187,10 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     labelConnectionsIcon = new QPushButton();
     labelConnectionsIcon->setFlat(true); // Make the button look like a label, but clickable
     labelConnectionsIcon->setStyleSheet(".QPushButton { background-color: rgba(255, 255, 255, 0);}");
-    labelConnectionsIcon->setMaximumSize(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE);
+    labelConnectionsIcon->setMaximumSize(16777215, 16777215);
+    labelConnectionsIcon->setIconSize(QSize(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+    labelConnectionsIcon->setMinimumSize(STATUSBAR_ICONSIZE - 6, STATUSBAR_ICONSIZE - 6);
+    labelConnectionsIcon->setContentsMargins(-3, 0, 0, 0);
     labelBlocksIcon = new QLabel();
 
     if (enableWallet) {
@@ -206,8 +210,10 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     // Progress bar and label for blocks download
     progressBarLabel = new QLabel();
     progressBarLabel->setVisible(true);
+    progressBarLabel->setObjectName("progress_bar_label");
     progressBar = new GUIUtil::ProgressBar();
-    progressBar->setAlignment(Qt::AlignCenter);
+    progressBar->setObjectName("progress_bar");
+    progressBar->setAlignment(Qt::AlignLeft);
     progressBar->setVisible(true);
 
     // Override style sheet for progress bar for styles that have a segmented progress bar,
@@ -272,10 +278,16 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 {
     QActionGroup* tabGroup = new QActionGroup(this);
 
-    overviewAction = new QAction(QIcon(":/icons/overview"), tr("&Overview"), this);
+    QFont btn_font(":/fonts/volte", 11, QFont::Normal, false);
+    btn_font.setPointSizeF(11.5);
+
+    QIcon icon_overview = QIcon(":/icons/overview@2x");
+    icon_overview.addPixmap(QPixmap(":/icons/overview_on@2x"), QIcon::Normal, QIcon::On);
+    overviewAction = new QAction(icon_overview, tr("&OVERVIEW"), this);
     overviewAction->setStatusTip(tr("Show general overview of wallet"));
     overviewAction->setToolTip(overviewAction->statusTip());
     overviewAction->setCheckable(true);
+    overviewAction->setFont(btn_font);
 #ifdef Q_OS_MAC
     overviewAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
 #else
@@ -283,10 +295,13 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 #endif
     tabGroup->addAction(overviewAction);
 
-    sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
+    QIcon icon_send = QIcon(":/icons/send@2x");
+    icon_send.addPixmap(QPixmap(":/icons/send_on@2x"), QIcon::Normal, QIcon::On);
+    sendCoinsAction = new QAction(icon_send, tr("&SEND"), this);
     sendCoinsAction->setStatusTip(tr("Send coins to a AEGEUS address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
+    sendCoinsAction->setFont(btn_font);
 #ifdef Q_OS_MAC
     sendCoinsAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_2));
 #else
@@ -294,10 +309,13 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 #endif
     tabGroup->addAction(sendCoinsAction);
 
-    receiveCoinsAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive"), this);
+    QIcon icon_receive = QIcon(":/icons/receiving_addresses@2x");
+    icon_receive.addPixmap(QPixmap(":/icons/receiving_addresses_on@2x"), QIcon::Normal, QIcon::On);
+    receiveCoinsAction = new QAction(icon_receive, tr("&RECEIVE"), this);
     receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and aegeus: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
+    receiveCoinsAction->setFont(btn_font);
 #ifdef Q_OS_MAC
     receiveCoinsAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_3));
 #else
@@ -305,10 +323,13 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 #endif
     tabGroup->addAction(receiveCoinsAction);
 
-    historyAction = new QAction(QIcon(":/icons/history"), tr("&Transactions"), this);
+    QIcon icon_history = QIcon(":/icons/history@2x");
+    icon_history.addPixmap(QPixmap(":/icons/history_on@2x"), QIcon::Normal, QIcon::On);
+    historyAction = new QAction(icon_history, tr("&TRANSACTIONS"), this);
     historyAction->setStatusTip(tr("Browse transaction history"));
     historyAction->setToolTip(historyAction->statusTip());
     historyAction->setCheckable(true);
+    historyAction->setFont(btn_font);
 #ifdef Q_OS_MAC
     historyAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_4));
 #else
@@ -320,10 +341,13 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool()) {
-        masternodeAction = new QAction(QIcon(":/icons/masternodes"), tr("&Masternodes"), this);
+        QIcon icon_masternodes = QIcon(":/icons/masternodes@2x");
+        icon_masternodes.addPixmap(QPixmap(":/icons/masternodes_on@2x"), QIcon::Normal, QIcon::On);
+        masternodeAction = new QAction(icon_masternodes, tr("&MASTERNODES"), this);
         masternodeAction->setStatusTip(tr("Browse masternodes"));
         masternodeAction->setToolTip(masternodeAction->statusTip());
         masternodeAction->setCheckable(true);
+        masternodeAction->setFont(btn_font);
 #ifdef Q_OS_MAC
         masternodeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
 #else
@@ -499,9 +523,14 @@ void BitcoinGUI::createMenuBar()
 void BitcoinGUI::createToolBars()
 {
     if (walletFrame) {
+        QFrame* logo_frame = new QFrame;
+        logo_frame->setObjectName("logo_frame");
+        //logo_frame->setMaximumHeight(126);
+        logo_frame->setFixedSize( QSize(251, 126) );
+
         QToolBar* toolbar = new QToolBar(tr("Tabs toolbar"));
-	toolbar->setObjectName("Main-Toolbar");
-        toolbar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+        toolbar->setObjectName("Main-Toolbar");
+        toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
@@ -511,19 +540,34 @@ void BitcoinGUI::createToolBars()
             toolbar->addAction(masternodeAction);
         }
         toolbar->setMovable(false); // remove unused icon in upper left corner
-	toolbar->setOrientation(Qt::Vertical);
-        toolbar->setIconSize(QSize(30,30));
+        toolbar->setOrientation(Qt::Vertical);
+        toolbar->setIconSize(QSize(63,86));
         overviewAction->setChecked(true);
+
+        /* */
+        QVBoxLayout* left_container_layout = new QVBoxLayout;
+        left_container_layout->addWidget(logo_frame);
+        left_container_layout->addWidget(toolbar);
+        left_container_layout->setSpacing(0);
+        left_container_layout->setContentsMargins(QMargins());
+        /* */
+
+        /* */
+        QWidget* left_container = new QWidget();
+        left_container->setObjectName("left_container");
+        left_container->setLayout(left_container_layout);
+        /* */
 
         /** Create additional container for toolbar and walletFrame and make it the central widget.
             This is a workaround mostly for toolbar styling on Mac OS but should work fine for every other OSes too.
         */
-        QVBoxLayout* layout = new QVBoxLayout;
-        layout->addWidget(toolbar);
+        QHBoxLayout* layout = new QHBoxLayout;
+        //layout->addWidget(toolbar);
+        layout->addWidget(left_container);
         layout->addWidget(walletFrame);
         layout->setSpacing(0);
         layout->setContentsMargins(QMargins());
-        layout->setDirection(QBoxLayout::LeftToRight);
+        //layout->setDirection(QBoxLayout::LeftToRight);
         QWidget* containerWidget = new QWidget();
         containerWidget->setLayout(layout);
         setCentralWidget(containerWidget);
@@ -1284,4 +1328,46 @@ void UnitDisplayStatusBarControl::onMenuSelection(QAction* action)
     if (action) {
         optionsModel->setDisplayUnit(action->data());
     }
+}
+
+
+
+/* ADDED TO HAVE A CUSTOM/SCALABLE/RETINA-READY BACKGROUND IMAGE ON TOOLBAR */
+CustomQWidget::CustomQWidget(QWidget *parent) : QWidget(parent)
+{
+
+}
+
+void CustomQWidget::paintEvent(QPaintEvent *pe) {
+    QWidget::paintEvent(pe);
+
+    //#ifdef Q_OS_MAC
+    QPixmap pixmap(":/images/QToolBar@2x");
+    //#else
+    //QPixmap pixmap(":/images/QToolBar");
+    //#endif
+
+    QPainter paint(this);
+
+    paint.fillRect(rect(), QColor(246, 247, 248));
+    paint.setRenderHint(QPainter::SmoothPixmapTransform);
+
+    auto winSize = size();
+    auto pixmapRatio = (float)pixmap.width() / pixmap.height();
+    auto windowRatio = (float)winSize.width() / winSize.height();
+
+    if (pixmapRatio > windowRatio) {
+        auto newWidth = (int)(winSize.height() * pixmapRatio);
+        auto offset = (newWidth - winSize.width()) / -2;
+        paint.drawPixmap(offset, 0, newWidth, winSize.height(), pixmap);
+    } else {
+        auto newHeight = (int)(winSize.width() / pixmapRatio);
+        auto offset = (newHeight - winSize.height()) / -2;
+        paint.drawPixmap(0, offset, winSize.width(), newHeight, pixmap);
+    }
+
+    //int widWidth = 251;//this->ui->centralWidget->width();
+    //int widHeight = 1003;//this->ui->centralWidget->height();
+    //pixmap = pixmap.scaled(widWidth, widHeight, Qt::KeepAspectRatioByExpanding);
+    //paint.drawPixmap(0, 0, pixmap);
 }

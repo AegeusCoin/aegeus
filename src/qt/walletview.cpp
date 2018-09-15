@@ -32,6 +32,7 @@
 #include <QPushButton>
 #include <QSettings>
 #include <QVBoxLayout>
+#include <QGraphicsDropShadowEffect>
 
 WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
                                           clientModel(0),
@@ -39,16 +40,18 @@ WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
 {
     // Create tabs
     overviewPage = new OverviewPage();
+
+    /* BEGIN Transactions Page */
     transactionsPage = new QWidget(this);
+
     QVBoxLayout* vbox = new QVBoxLayout();
-    QHBoxLayout* hbox_buttons = new QHBoxLayout();
+    vbox->setContentsMargins(QMargins());
+    vbox->setSpacing(0);
+
     transactionView = new TransactionView(this);
     vbox->addWidget(transactionView);
-    QPushButton* exportButton = new QPushButton(tr("&Export"), this);
-    exportButton->setToolTip(tr("Export the data in the current tab to a file"));
-#ifndef Q_OS_MAC // Icons on push buttons are very uncommon on Mac
-    exportButton->setIcon(QIcon(":/icons/export"));
-#endif
+
+    QHBoxLayout* hbox_buttons = new QHBoxLayout();
     hbox_buttons->addStretch();
 
     // Sum of selected transactions
@@ -63,9 +66,35 @@ WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
     transactionSum->setTextInteractionFlags(Qt::TextSelectableByMouse);
     hbox_buttons->addWidget(transactionSum);
 
+    QPushButton* exportButton = new QPushButton(tr("&Export"), this);
+    exportButton->setToolTip(tr("Export the data in the current tab to a file"));
     hbox_buttons->addWidget(exportButton);
+
+    hbox_buttons->addStretch();
+    hbox_buttons->setContentsMargins(0, 20, 0, 0);
+
     vbox->addLayout(hbox_buttons);
-    transactionsPage->setLayout(vbox);
+
+    QFrame* outer_frame = new QFrame;
+    outer_frame->setLayout(vbox);
+    outer_frame->setObjectName("transactions_page");
+
+    int ds_blur = 70;
+    int ds_yoff = 15;
+    QGraphicsDropShadowEffect* drop_shadow_outer_frame = new QGraphicsDropShadowEffect;
+    drop_shadow_outer_frame->setBlurRadius(ds_blur);
+    drop_shadow_outer_frame->setXOffset(0);
+    drop_shadow_outer_frame->setYOffset(ds_yoff);
+    drop_shadow_outer_frame->setColor(QColor(59, 76, 107, 50));
+    outer_frame->setGraphicsEffect(drop_shadow_outer_frame);
+
+    QHBoxLayout* outer_layout = new QHBoxLayout;
+    outer_layout->addWidget(outer_frame);
+    outer_layout->setContentsMargins(35, 42, 35, 42);
+    outer_layout->setSpacing(0);
+
+    transactionsPage->setLayout(outer_layout);
+    /* END Transactions Page */
 
     receiveCoinsPage = new ReceiveCoinsDialog();
     sendCoinsPage = new SendCoinsDialog();

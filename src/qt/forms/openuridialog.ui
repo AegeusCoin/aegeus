@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>564</width>
-    <height>109</height>
+    <height>146</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,10 +31,23 @@
       </widget>
      </item>
      <item>
-      <widget class="QValidatedLineEdit" name="uriEdit"/>
+      <widget class="QValidatedLineEdit" name="uriEdit">
+       <property name="minimumSize">
+        <size>
+         <width>36</width>
+         <height>36</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="selectFileButton">
+       <property name="minimumSize">
+        <size>
+         <width>36</width>
+         <height>36</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Select payment request file</string>
        </property>
