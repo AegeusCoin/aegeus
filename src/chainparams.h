@@ -94,6 +94,8 @@ public:
     std::string ObfuscationPoolDummyAddress() const { return strObfuscationPoolDummyAddress; }
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }
     CBaseChainParams::Network NetworkID() const { return networkID; }
+    int NewMasternodeCollateral_StartBlock() const { return nNewMasternodeCollateral_StartBlock; }
+    int NewMasternode_Collateral() const { return nNewMasternode_Collateral; }
 
 protected:
     CChainParams() {}
@@ -136,6 +138,8 @@ protected:
     std::string strSporkKey;
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
+    int nNewMasternodeCollateral_StartBlock;
+    int nNewMasternode_Collateral;
 };
 
 /** 
