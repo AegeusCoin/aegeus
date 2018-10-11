@@ -119,6 +119,7 @@ public:
         nMaxMoneyOut = 21000000 * COIN;
         nNewMasternodeCollateral_StartBlock = 373865; // Nov 1, 2018 (approximately)
         nNewMasternode_Collateral = 50000;
+        nOriginalMasternode_Collateral = 5000;
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
