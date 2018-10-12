@@ -1421,9 +1421,6 @@ CAmount CWallet::GetImmatureWatchOnlyBalance() const
     return nTotal;
 }
 
-/**
- * populate vCoins with vector of available COutputs.
- */
 void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const CCoinControl* coinControl, bool fIncludeZeroValue, AvailableCoinsType nCoinType, bool fUseIX) const
 {
     vCoins.clear();
@@ -1494,6 +1491,7 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
         }
     }
 }
+
 
 map<CBitcoinAddress, vector<COutput> > CWallet::AvailableCoinsByAddress(bool fConfirmed, CAmount maxCoinValue)
 {
@@ -1909,11 +1907,11 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
         //do not allow collaterals to be selected
         if (IsCollateralAmount(out.tx->vout[out.i].nValue)) continue;
 
-        if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
+  	if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
           if (fMasterNode && out.tx->vout[out.i].nValue == Params().NewMasternode_Collateral() * COIN) continue; //masternode input
         } else {
           if (fMasterNode && out.tx->vout[out.i].nValue == Params().OriginalMasternode_Collateral() * COIN) continue; //masternode input
-        }
+	}
 
         if (nValueRet + out.tx->vout[out.i].nValue <= nValueMax) {
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
@@ -1934,7 +1932,6 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
 
     return false;
 }
-
 
 bool CWallet::SelectCoinsCollateral(std::vector<CTxIn>& setCoinsRet, CAmount& nValueRet) const
 {
@@ -2502,7 +2499,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     LogPrintf("StakingDebug: nCredit: %.8f\n", nCredit);
 
     CAmount nMinFee = 0;
-     while (true) {
+    while (true) {
       if (txNew.vout.size() == 3) {
         txNew.vout[1].nValue = nCredit / 2;
         txNew.vout[2].nValue = nCredit - txNew.vout[1].nValue;
@@ -2511,9 +2508,9 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
       }
 
         // Limit size
-        unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
-        if (nBytes >= DEFAULT_BLOCK_MAX_SIZE / 5)
-            return error("CreateCoinStake : exceeded coinstake size limit");
+    	unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+    	if (nBytes >= DEFAULT_BLOCK_MAX_SIZE / 5)
+        	return error("CreateCoinStake : exceeded coinstake size limit");
 
         CAmount nFeeNeeded = GetMinimumFee(nBytes, nTxConfirmTarget, mempool);
 
@@ -2531,16 +2528,11 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     //Masternode payment
     FillBlockPayee(txNew, nMinFee, true);
 
-    int nHeight = chainActive.Tip()->nHeight;
-
     // Sign
-    if (nHeight < Params().NewMasternodeCollateral_StartBlock()) {
-      int nIn = 0;
-      BOOST_FOREACH (const CWalletTx* pcoin, vwtxPrev) {
-	if (!SignSignature(*this, *pcoin, txNew, nIn++)) {
-	  return error("CreateCoinStake : failed to sign coinstake");
-	}
-      }
+    int nIn = 0;
+    BOOST_FOREACH (const CWalletTx* pcoin, vwtxPrev) {
+        if (!SignSignature(*this, *pcoin, txNew, nIn++))
+            return error("CreateCoinStake : failed to sign coinstake");
     }
 
     // Successfully generated coinstake
