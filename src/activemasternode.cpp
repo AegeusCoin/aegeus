@@ -480,6 +480,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
           }
         }
     }
+    return filteredCoins;
 }
 
 // when starting a Masternode, this can enable to run as a hot wallet with no funds
