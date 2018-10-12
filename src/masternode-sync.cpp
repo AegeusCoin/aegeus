@@ -27,6 +27,13 @@ CMasternodeSync::CMasternodeSync()
 
 bool CMasternodeSync::IsSynced()
 {
+    // Return true while new masternodes settle into the network.  Without this in place, staking will halt.
+    int nHeight = chainActive.Height();
+
+    if (nHeight >= Params().NewMasternodeCollateral_StartBlock() && nHeight <= Params().NewMasternodeCollateral_GPBlock()) {
+      return true;
+    }
+
     return RequestedMasternodeAssets == MASTERNODE_SYNC_FINISHED;
 }
 
