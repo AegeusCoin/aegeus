@@ -2531,11 +2531,16 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     //Masternode payment
     FillBlockPayee(txNew, nMinFee, true);
 
+    int nHeight = chainActive.Tip()->nHeight;
+
     // Sign
-    int nIn = 0;
-    BOOST_FOREACH (const CWalletTx* pcoin, vwtxPrev) {
-        if (!SignSignature(*this, *pcoin, txNew, nIn++))
-            return error("CreateCoinStake : failed to sign coinstake");
+    if (nHeight < Params().NewMasternodeCollateral_StartBlock()) {
+      int nIn = 0;
+      BOOST_FOREACH (const CWalletTx* pcoin, vwtxPrev) {
+	if (!SignSignature(*this, *pcoin, txNew, nIn++)) {
+	  return error("CreateCoinStake : failed to sign coinstake");
+	}
+      }
     }
 
     // Successfully generated coinstake
