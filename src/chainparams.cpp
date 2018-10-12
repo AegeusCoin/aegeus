@@ -121,6 +121,7 @@ public:
         nNewMasternodeCollateral_StartBlock = 373865; // Nov 1, 2018 (approximately)
         nNewMasternode_Collateral = 50000;
         nOriginalMasternode_Collateral = 5000;
+        nNewMasternodeCollateral_GPBlock = 383945; // 1 week grace period to allow for masternodes to activate using the new collateral
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
