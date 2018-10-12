@@ -141,7 +141,7 @@ protected:
     int64_t nStartMasternodePayments;
     int nNewMasternodeCollateral_StartBlock;
     int nNewMasternode_Collateral;
-    int originalMasternode_Collateral;
+    int nOriginalMasternode_Collateral;
 };
 
 /** 
