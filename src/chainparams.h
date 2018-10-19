@@ -98,6 +98,7 @@ public:
     int NewMasternodeCollateral_GPBlock() const { return nNewMasternodeCollateral_GPBlock; }
     int NewMasternode_Collateral() const { return nNewMasternode_Collateral; }
     int OriginalMasternode_Collateral() const { return nOriginalMasternode_Collateral; }
+    int64_t Budget_Fee_Confirmations() const { return nBudget_Fee_Confirmations; }
 
 protected:
     CChainParams() {}
@@ -144,6 +145,8 @@ protected:
     int nNewMasternodeCollateral_GPBlock;
     int nNewMasternode_Collateral;
     int nOriginalMasternode_Collateral;
+    int64_t nBudget_Fee_Confirmations;
+
 };
 
 /** 
