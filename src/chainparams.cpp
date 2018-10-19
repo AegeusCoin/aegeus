@@ -58,7 +58,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (2, uint256("0x0000030f7e71b0892048c451573fcea99d2b5db0175db1324b0d2320d399e2cc")) // Premine
     (510, uint256("0xb6823aa9a35db3c5f0b70cff171366a4e6f5c0955b8271b099172b38682866f0")) // Modifier update block
     (205706, uint256("0xee5b0a720762b540834f1c0c7dd8c700be3fbcaee49a1971118cfafe158e079f")) // Proper height and hash to avoid chain fork confusion
-    (226700, uint256("0x50dfb6a07586cecc20455d483c751f85d161c1d6ce64472cadfaf548c9a7cab6"));
+    (226700, uint256("0x50dfb6a07586cecc20455d483c751f85d161c1d6ce64472cadfaf548c9a7cab6"))
     (343631, uint256("0xaa2317fca371a9be2f2840c30e543a6b3cfc34911be631ea0244e479a1d79859"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -119,9 +119,10 @@ public:
         nModifierUpdateBlock = 510;
         nMaxMoneyOut = 21000000 * COIN;
         nNewMasternodeCollateral_StartBlock = 373865; // Nov 1, 2018 (approximately)
+	nNewMasternodeCollateral_GPBlock = 383945; // 1 week grace period to allow for masternodes to activate using the new collateral
         nNewMasternode_Collateral = 50000;
         nOriginalMasternode_Collateral = 5000;
-        nNewMasternodeCollateral_GPBlock = 383945; // 1 week grace period to allow for masternodes to activate using the new collateral
+        nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
