@@ -5343,8 +5343,10 @@ int ActiveProtocol()
       return 70815;
     } else if (chainActive.Tip()->nHeight >= 286315 && chainActive.Tip()->nHeight < 329515) {
       return 70816;
-    } else if (chainActive.Tip()->nHeight >= 329515) {
+    } else if (chainActive.Tip()->nHeight >= 329515 && chainActive.Tip()->nHeight < 373865) {
       return 70817;
+    } else if (chainActive.Tip()->nHeight >= 373865) {
+      return 70818;
     }
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
