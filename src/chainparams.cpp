@@ -118,8 +118,8 @@ public:
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 510;
         nMaxMoneyOut = 21000000 * COIN;
-        nNewMasternodeCollateral_StartBlock = 373865; // Nov 1, 2018 (approximately)
-	nNewMasternodeCollateral_GPBlock = 383945; // 1 week grace period to allow for masternodes to activate using the new collateral
+        nNewMasternodeCollateral_StartBlock = 383945; // Nov 7, 2018 (approximately)
+	nNewMasternodeCollateral_GPBlock = 394025; // 1 week grace period to allow for masternodes to activate using the new collateral
         nNewMasternode_Collateral = 50000;
         nOriginalMasternode_Collateral = 5000;
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
