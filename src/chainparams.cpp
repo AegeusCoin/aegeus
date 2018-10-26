@@ -69,9 +69,7 @@ static const Checkpoints::CCheckpointData data = {
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x00000ae4a05aa8ffcaa8b5fd246560dc45af54a8868dc6f2f4ffa3cb850f01ad"))
-    (1, uint256("0x000006267959b2d4330b5b92d73ab22facb4c03a4f9bff32acb03eaeff304a71"));
-
+    boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
     1532099595,
@@ -212,7 +210,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // AEG: 1 minute
         nTargetSpacing = 1 * 60;  // AEG: 1 minute
-        nLastPOWBlock = 350;
+        nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 360;
@@ -250,7 +248,7 @@ public:
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "044886172e4635ab5a74863bfccbf19c7a424619448d9622ddbc970c71c085c379be8c37a7fe6ceae3dc75b7366adc1aaabd8135369e3f4f740d3270aee6be6bc7";
+        strSporkKey = "04e64377d92d68ae9bfacd962000f09fa16724573618e4f4ac32364099b54d723a13bc7ad32c8f62d74d2c6208be1cd12494184bbc7b6be9ce98b946999064109d";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
     }
