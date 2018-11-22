@@ -217,7 +217,6 @@ Value importaddress(const Array& params, bool fHelp)
         // If 0 is specified/defaulted-to we start from genesis otherwise the height specified
         if (nScanStartingHeight == 0) {
           pindexScanFrom = chainActive[std::max(0, chainActive.Height() - chainActive.Height())];
-          cout << "starting from: " << chainActive.Height() - chainActive.Height() << endl;
         } else {
           pindexScanFrom = chainActive[std::max(0, chainActive.Height() - chainActive.Height() + nScanStartingHeight)];
         }
