@@ -219,7 +219,7 @@ Value importaddress(const Array& params, bool fHelp)
           pindexScanFrom = chainActive[std::max(0, chainActive.Height() - chainActive.Height())];
           cout << "starting from: " << chainActive.Height() - chainActive.Height() << endl;
         } else {
-          pindexScanFrom = chainActive[std::max(0, chainActive.Height()+1 - chainActive.Height()+1 + nScanStartingHeight)];
+          pindexScanFrom = chainActive[std::max(0, chainActive.Height() - chainActive.Height() + nScanStartingHeight)];
         }
 
         if (fRescan) {
