@@ -147,7 +147,7 @@ Value importprivkey(const Array& params, bool fHelp)
 
 Value importaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 3)
+    if (fHelp || params.size() < 1 || params.size() > 4)
         throw runtime_error(
             "importaddress \"address\" ( \"label\" rescan )\n"
             "\nAdds an address or script (in hex) that can be watched as if it were in your wallet but cannot be used to spend.\n"
@@ -155,6 +155,7 @@ Value importaddress(const Array& params, bool fHelp)
             "1. \"address\"          (string, required) The address\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
+            "4. \"height\" (int, optional) Rescan for transactions starting from N height\n"
             "\nNote: This call can take minutes to complete if rescan is true.\n"
             "\nExamples:\n"
             "\nImport an address with rescan\n" +
@@ -163,6 +164,8 @@ Value importaddress(const Array& params, bool fHelp)
             "\nAs a JSON-RPC call\n" + HelpExampleRpc("importaddress", "\"myaddress\", \"testing\", false"));
 
     CScript script;
+    int nScanStartingHeight = 0;
+    CBlockIndex* pindexScanFrom;
 
     CBitcoinAddress address(params[0].get_str());
     if (address.IsValid()) {
@@ -180,8 +183,18 @@ Value importaddress(const Array& params, bool fHelp)
 
     // Whether to perform rescan after import
     bool fRescan = true;
-    if (params.size() > 2)
+    if (params.size() > 2) {
         fRescan = params[2].get_bool();
+    }
+
+    if (params.size() == 4) {
+      string strScanStartingHeight = params[3].get_str();
+      nScanStartingHeight = boost::lexical_cast<int>(strScanStartingHeight);
+
+      if (nScanStartingHeight <= 0) {
+        nScanStartingHeight = 0;
+      }
+    }
 
     {
         if (::IsMine(*pwalletMain, script) == ISMINE_SPENDABLE)
@@ -200,14 +213,23 @@ Value importaddress(const Array& params, bool fHelp)
         if (!pwalletMain->AddWatchOnly(script))
             throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
 
+
+        // If 0 is specified/defaulted-to we start from genesis otherwise the height specified
+        if (nScanStartingHeight == 0) {
+          pindexScanFrom = chainActive[std::max(0, chainActive.Height() - chainActive.Height())];
+        } else {
+          pindexScanFrom = chainActive[std::max(0, chainActive.Height() - chainActive.Height() + nScanStartingHeight)];
+        }
+
         if (fRescan) {
-            pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
+            pwalletMain->ScanForWalletTransactions(pindexScanFrom, true);
             pwalletMain->ReacceptWalletTransactions();
         }
     }
 
     return Value::null;
 }
+
 
 Value importwallet(const Array& params, bool fHelp)
 {
