@@ -68,7 +68,7 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
     	  LOCK(cs_vNodes);
     	  BOOST_FOREACH (CNode* pnode, vNodes) {
       	    if (pnode->nVersion != MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT) {
-              Misbehaving(pnode->GetId(), 1, true);
+              Instaban(pnode->GetId());
               pnode->CloseSocketDisconnect();
               LogPrintf("Dropped and banned peer %s for not updating\n", pnode->GetId());
       	    }

@@ -1720,20 +1720,19 @@ void CheckForkWarningConditionsOnNewFork(CBlockIndex* pindexNewForkTip)
     CheckForkWarningConditions();
 }
 
-// Requires cs_main.
-void Misbehaving(NodeId pnode, int howmuch, bool autokill)
-{
-    if (!autokill) {
-      return; // This keeps banning nodes, for no logical reason.  Will address this in an update.
-    } else {
-      CNodeState* state = State(pnode);
-      if (state == NULL)
-        return;
+// Requires cs_main. -- Disabled for now, addressing in another update.
+void Misbehaving(NodeId pnode, int howmuch) {}
 
-      int banscore = GetArg("-banscore", 100);
-      state->nMisbehavior += banscore;
-      state->fShouldBan = true;
-    }
+
+void Instaban(NodeId pnode)
+{
+    CNodeState* state = State(pnode);
+    if (state == NULL)
+    	return;
+
+    int banscore = GetArg("-banscore", 100);
+    state->nMisbehavior += banscore;
+    state->fShouldBan = true;
 }
 
 void static InvalidChainFound(CBlockIndex* pindexNew)
