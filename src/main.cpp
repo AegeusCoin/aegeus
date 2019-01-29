@@ -1721,23 +1721,19 @@ void CheckForkWarningConditionsOnNewFork(CBlockIndex* pindexNewForkTip)
 }
 
 // Requires cs_main.
-void Misbehaving(NodeId pnode, int howmuch)
+void Misbehaving(NodeId pnode, int howmuch, bool autokill)
 {
-    return; // This keeps banning nodes, for no logical reason.
-    if (howmuch == 0)
+    if (!autokill) {
+      return; // This keeps banning nodes, for no logical reason.  Will address this in an update.
+    } else {
+      CNodeState* state = State(pnode);
+      if (state == NULL)
         return;
 
-    CNodeState* state = State(pnode);
-    if (state == NULL)
-        return;
-
-    state->nMisbehavior += howmuch;
-    int banscore = GetArg("-banscore", 100);
-    if (state->nMisbehavior >= banscore && state->nMisbehavior - howmuch < banscore) {
-        LogPrintf("Misbehaving: %s (%d -> %d) BAN THRESHOLD EXCEEDED\n", state->name, state->nMisbehavior - howmuch, state->nMisbehavior);
-        state->fShouldBan = true;
-    } else
-        LogPrintf("Misbehaving: %s (%d -> %d)\n", state->name, state->nMisbehavior - howmuch, state->nMisbehavior);
+      int banscore = GetArg("-banscore", 100);
+      state->nMisbehavior += banscore;
+      state->fShouldBan = true;
+    }
 }
 
 void static InvalidChainFound(CBlockIndex* pindexNew)
