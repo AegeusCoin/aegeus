@@ -137,6 +137,7 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_16_MN_WINNER_MINIMUM_AGE) r = SPORK_16_MN_WINNER_MINIMUM_AGE_DEFAULT;
         if (nSporkID == SPORK_17_PROPOSAL_VETO) r = SPORK_17_PROPOSAL_VETO_DEFAULT; 
         if (nSporkID == SPORK_18_KILL_STRAGGLERS) r = SPORK_18_KILL_STRAGGLERS_DEFAULT; 
+        if (nSporkID == SPORK_19_FAKE_STAKE_FIX) r = SPORK_19_FAKE_STAKE_FIX_DEFAULT; 
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
     }
@@ -287,6 +288,7 @@ int CSporkManager::GetSporkIDByName(std::string strName)
     if (strName == "SPORK_16_MN_WINNER_MINIMUM_AGE") return SPORK_16_MN_WINNER_MINIMUM_AGE;
     if (strName == "SPORK_17_PROPOSAL_VETO") return SPORK_17_PROPOSAL_VETO;
     if (strName == "SPORK_18_KILL_STRAGGLERS") return SPORK_18_KILL_STRAGGLERS;
+    if (strName == "SPORK_19_FAKE_STAKE_FIX") return SPORK_19_FAKE_STAKE_FIX;
 
     return -1;
 }
@@ -308,6 +310,7 @@ std::string CSporkManager::GetSporkNameByID(int id)
     if (id == SPORK_16_MN_WINNER_MINIMUM_AGE) return "SPORK_16_MN_WINNER_MINIMUM_AGE";
     if (id == SPORK_17_PROPOSAL_VETO) return "SPORK_17_PROPOSAL_VETO";
     if (id == SPORK_18_KILL_STRAGGLERS) return "SPORK_18_KILL_STRAGGLERS";
+    if (id == SPORK_19_FAKE_STAKE_FIX) return "SPORK_19_FAKE_STAKE_FIX";
 
     return "Unknown";
 }

@@ -26,7 +26,7 @@ using namespace boost;
     - This would result in old clients getting confused about which spork is for what
 */
 #define SPORK_START 10001
-#define SPORK_END 10017
+#define SPORK_END 10018
 
 #define SPORK_2_SWIFTTX 10001
 #define SPORK_3_SWIFTTX_BLOCK_FILTERING 10002
@@ -43,6 +43,7 @@ using namespace boost;
 #define SPORK_16_MN_WINNER_MINIMUM_AGE 10015
 #define SPORK_17_PROPOSAL_VETO 10016
 #define SPORK_18_KILL_STRAGGLERS 10017
+#define SPORK_19_FAKE_STAKE_FIX 10018
 
 #define SPORK_2_SWIFTTX_DEFAULT 978307200                         //2001-1-1
 #define SPORK_3_SWIFTTX_BLOCK_FILTERING_DEFAULT 1424217600        //2015-2-18
@@ -60,6 +61,7 @@ using namespace boost;
                                                                   // Set this to zero to emulate classic behaviour
 #define SPORK_17_PROPOSAL_VETO_DEFAULT 2000000001
 #define SPORK_18_KILL_STRAGGLERS_DEFAULT 0
+#define SPORK_19_FAKE_STAKE_FIX_DEFAULT 4070908800
 
 class CSporkMessage;
 class CSporkManager;
