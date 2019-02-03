@@ -5335,19 +5335,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    if (chainActive.Tip()->nHeight >= 131282 && chainActive.Tip()->nHeight < 197035) {
-      return 70813;
-    } else if (chainActive.Tip()->nHeight >= 197035 && chainActive.Tip()->nHeight < 207500) {
-      return 70814;
-    } else if (chainActive.Tip()->nHeight >= 207500 && chainActive.Tip()->nHeight < 286315) {
-      return 70815;
-    } else if (chainActive.Tip()->nHeight >= 286315 && chainActive.Tip()->nHeight < 329515) {
-      return 70816;
-    } else if (chainActive.Tip()->nHeight >= 329515 && chainActive.Tip()->nHeight < 383945) {
-      return 70817;
-    } else if (chainActive.Tip()->nHeight >= 383945) {
-      return 70818;
-    }
+    // SPORK_14 is used for 70913 (v3.1.0+)
+    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT))
+            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+
+    // SPORK_15 was used for 70912 (v3.0.5+), commented out now.
+    //if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
+    //        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
 }
